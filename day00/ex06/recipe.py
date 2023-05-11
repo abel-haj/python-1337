@@ -18,17 +18,17 @@
 #       prep_time is: 15 minutes
 
 cookbook = {
-    "Sandwich": {
+    "sandwich": {
         "ingredients": ["ham", "bread", "cheese", "tomatoes"],
         "meal": "lunch",
         "prep_time": 0,
     },
-    "Cake": {
+    "cake": {
         "ingredients": ["flour", "sugar", "eggs"],
         "meal": "dessert",
         "prep_time": 60,
     },
-    "Salad": {
+    "salad": {
         "ingredients": ["avocado", "arugula", "tomatoes", "spinach"],
         "meal": "lunch",
         "prep_time": 15,
@@ -52,8 +52,9 @@ def print_recipes():
 
 
 #   2. A function that takes a recipe name and print its details.
-def recipe_details(recipe_name: str):
-    print('The meal is {:s}'.format(recipe_name))
+def print_recipe(recipe_name: str):
+    recipe_name = recipe_name.lower()
+    print('Recipe for {:s}'.format(recipe_name))
 
     if recipe_name in cookbook.keys():
         print('It\'s ingredients are {:s}.'.format(', '.join(cookbook[recipe_name]['ingredients'])))
@@ -65,6 +66,7 @@ def recipe_details(recipe_name: str):
 
 #   3. A function that takes a recipe name and delete it.
 def remove_recipe(recipe_name: str):
+    recipe_name = recipe_name.lower()
     if recipe_name in cookbook.keys():
         cookbook.pop(recipe_name)
     else:
