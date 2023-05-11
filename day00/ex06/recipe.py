@@ -48,7 +48,7 @@ def print_recipes():
     print('ALL RECIPES')
     print('-----------')
     for recipe in cookbook: print(recipe)
-    print('-----------')
+    print('-----------\n')
 
 
 #   2. A function that takes a recipe name and print its details.
@@ -57,11 +57,12 @@ def print_recipe(recipe_name: str):
     print('Recipe for {:s}'.format(recipe_name))
 
     if recipe_name in cookbook.keys():
-        print('It\'s ingredients are {:s}.'.format(', '.join(cookbook[recipe_name]['ingredients'])))
-        print('It is a {:s} meal.'.format(cookbook[recipe_name]['meal']))
-        print('It takes {:d} of preparation.'.format(cookbook[recipe_name]['prep_time']))
+        print('\tIngredients list: [{:s}]'.format(', '.join(cookbook[recipe_name]['ingredients'])))
+        print('\tTo be eaten for {:s}.'.format(cookbook[recipe_name]['meal']))
+        print('\tTakes {:d} minutes of cooking.'.format(cookbook[recipe_name]['prep_time']))
     else:
         print('This meal does not exist in the Cookbook!')
+    print('')
 
 
 #   3. A function that takes a recipe name and delete it.
@@ -69,9 +70,10 @@ def remove_recipe(recipe_name: str):
     recipe_name = recipe_name.lower()
     if recipe_name in cookbook.keys():
         cookbook.pop(recipe_name)
+        print('{:s} recipe deleted!'.format(recipe_name))
     else:
         print('This meal does not exist in the Cookbook!')
-    pass
+    print('')
 
 
 #   4. A function that add a recipe from user input. You will need a name, a list of
@@ -87,20 +89,28 @@ def add_recipe():
     recipe_ingr = recipe_ingr.split(',')
     recipe_ingr = [ingr.strip() for ingr in recipe_ingr]
     if len(recipe_ingr) == 0 or all([ingr == '' for ingr in recipe_ingr]):
-        print('Invalid ingredients!')
+        print('Invalid ingredients!\n')
         return
 
     recipe_meal = input('Enter meal type:\n').strip()
     if len(recipe_meal) == 0:
-        print('Please specify a meal next time!')
+        print('Please specify a meal next time!\n')
         return
     
-    recipe_time = int(input('Enter time mintues for preparation:\n').strip())
+    recipe_time = input('Enter time mintues for preparation:\n').strip()
+
+    if not recipe_time.isnumeric():
+        print('Please enter a number next time!\n')
+        return
+
+    recipe_time = int(recipe_time)
     if recipe_time <= 0:
-        print('Please enter a positive number next time!')
+        print('Please enter a positive number next time!\n')
+        return
 
     # cookbook[recipe_name] = { 'ingredients': recipe_ingr, 'meal': recipe_meal, 'prep_time': recipe_time } # 1
     cookbook.update( { recipe_name: { 'ingredients': recipe_ingr, 'meal': recipe_meal, 'prep_time': recipe_time } } ) # 2
+    print('{:s} recipe was added!\n'.format(recipe_name))
 
 
 def print_prompt():
@@ -114,26 +124,32 @@ def print_prompt():
 
 
 if __name__ == '__main__':
-    # print_recipes()
-    # print()
 
-    # recipe_details('Salad')
-    # print()
-    # recipe_details('Sandwich')
-    # print()
-    # recipe_details('Cake')
-    # print()
-    # recipe_details('CakeSalad')
+    print('Welcome to the Python Cookbook !')
+    while 1:
+        print_prompt()
+        choice = input('Please select an option: ')
+        if not choice.isnumeric():
+            print('Not a valid number\n')
+            continue
+        choice = int(choice)
 
-    # print()
-    # remove_recipe('CakeSalad')
-    # print()
-    # remove_recipe('Salad')
-    # print_recipes()
+        match choice:
+            case 1:
+                add_recipe()
+            case 2:
+                print('Please enter a recipe name to delete it:')
+                remove_recipe(input())
+            case 3:
+                print('Please enter a recipe name to get its details:')
+                print_recipe(input())
+            case 4:
+                print_recipes()
+            case 5:
+                print('Cookbook closed. Have a nice day!')
+                break
 
-    add_recipe()
-    print()
-    # print_recipes()
-    print(cookbook.items())
+            case _:
+                print('Wrong value entered! Please try again!\n')
 
     pass
