@@ -100,6 +100,14 @@ def add_recipe():
     # cookbook[recipe_name] = { 'ingredients': recipe_ingr, 'meal': recipe_meal, 'prep_time': recipe_time } # 1
     cookbook.update( { recipe_name: { 'ingredients': recipe_ingr, 'meal': recipe_meal, 'prep_time': recipe_time } } ) # 2
 
+
+def print_prompt():
+    print('List of available option:')
+    print('\t1: Add a recipe')
+    print('\t2: Delete a recipe')
+    print('\t3: Print a recipe')
+    print('\t4: Print the cookbook')
+    print('\t5: Quit\n')
     pass
 
 
