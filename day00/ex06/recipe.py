@@ -78,7 +78,7 @@ def remove_recipe(recipe_name: str):
 #      ingredient, a meal type and a preparation time
 def add_recipe():
 
-    recipe_name = input('Enter a recipe name:\n').strip()
+    recipe_name = input('Enter a recipe name:\n').strip().lower()
     if len(recipe_name) == 0 or recipe_name in cookbook.keys():
         print('This recipe is invalid/exists!')
         return
