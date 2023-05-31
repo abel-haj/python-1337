@@ -3,8 +3,8 @@
 kata = "The right format"
 
 # # GPT
-print('{:->42}'.format(2), end='')
+# print('{:->42}'.format(kata), end='')
 
 # # ME :)
-# for i in range(42 - len(kata)): print('-', end='')
-# print(kata, end='')
+for i in range(42 - len(kata)): print('-', end='')
+print(kata, end='')
