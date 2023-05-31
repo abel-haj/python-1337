@@ -1,8 +1,10 @@
 import sys
 
 def text_analyzer(*args):
-    """This function takes a single string argument and displays
-    the sums of its upper-case characters, lower-case characters, punctuation characters and spaces"""
+    """
+    This function takes a single string argument and displays
+    the sums of its upper-case characters, lower-case characters, punctuation characters and spaces
+    """
 
     txt = ''
     if len(args) == 0:
@@ -13,11 +15,11 @@ def text_analyzer(*args):
             return
         txt = args[0]
 
-    print('The text contains ' + str(len(txt)) + ' characters:')
-    print('- ' + str(sum(1 for c in txt if c.isupper())) + ' upper letters')
-    print('- ' + str(sum(1 for c in txt if c.islower())) + ' lower letters')
-    print('- ' + str(sum(1 for c in txt if not c.isalnum() and not c.isspace())) + ' punctuation marks')
-    print('- ' + str(sum(1 for c in txt if c.isspace())) + ' spaces')
+    print('The text contains ' + str(len(txt)) + ' character(s):')
+    print('- ' + str(sum(1 for c in txt if c.isupper())) + ' upper letter(s)')
+    print('- ' + str(sum(1 for c in txt if c.islower())) + ' lower letter(s)')
+    print('- ' + str(sum(1 for c in txt if not c.isalnum() and not c.isspace())) + ' punctuation mark(s)')
+    print('- ' + str(sum(1 for c in txt if c.isspace())) + ' space(s)')
 
 if __name__ == '__main__':
     if(len(sys.argv) > 2):
