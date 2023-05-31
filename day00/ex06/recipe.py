@@ -134,22 +134,23 @@ if __name__ == '__main__':
             continue
         choice = int(choice)
 
-        match choice:
-            case 1:
-                add_recipe()
-            case 2:
-                print('Please enter a recipe name to delete it:')
-                remove_recipe(input())
-            case 3:
-                print('Please enter a recipe name to get its details:')
-                print_recipe(input())
-            case 4:
-                print_recipes()
-            case 5:
-                print('Cookbook closed. Have a nice day!')
-                break
+        if choice == 1:
+            add_recipe()
 
-            case _:
-                print('Wrong value entered! Please try again!\n')
+        elif choice == 2:
+            print('Please enter a recipe name to delete it:')
+            remove_recipe(input())
 
-    pass
+        elif choice == 3:
+            print('Please enter a recipe name to get its details:')
+            print_recipe(input())
+
+        elif choice == 4:
+            print_recipes()
+
+        elif choice == 5:
+            print('Cookbook closed. Have a nice day!')
+            break
+
+        else:
+            print('Wrong value entered! Please try again!\n')
